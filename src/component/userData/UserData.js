@@ -9,6 +9,7 @@ const UserData = ({ editPage }) => {
   const [userData, setUserData] = useState(null);
   const [showPopUp, setShowPopUp] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState();
+  const [editedUser, setEditedUser] = useState([]);
 
   useEffect(() => {
     setUserData(getItems());
@@ -24,21 +25,30 @@ const UserData = ({ editPage }) => {
     setItems(filterData);
   };
 
-  const updateUser = (e, data) => {
-    let updatedUser = { ...data };
-    updatedUser = { ...updatedUser, fullName: e.target.value };
-    console.log("update user" + updatedUser);
+  // const updateUser = (e, data) => {
+  //   let updatedUser = { ...data };
+  //   updatedUser = { ...updatedUser, fullName: e.target.value };
+  //   console.log("update user" + updatedUser);
 
-    console.log(e.target.value);
+  //   console.log(e.target.value);
 
-    console.log(data);
+  //   console.log(data);
 
-    // const arr = getItems();
-    // arr.push(addformUserData);
-    // setItems(arr);
-  };
-  const handlerEdit = (e, data) => {
-    console.log("data" + e.target.value);
+  //   // const arr = getItems();
+  //   // arr.push(addformUserData);
+  //   // setItems(arr);
+  // };
+  const handlerEdit = (e, selectedIndex) => {
+    // const updatedUser = { ...data };
+    const fieldName = e.target.getAttribute("name");
+    // updatedUser[fieldName] = e.target.value;
+    const updatedUser = userData.map((user, index) => {
+      if (index == selectedIndex) {
+        user[fieldName] = e.target.value;
+      }
+    });
+    // setEditedUser(updatedUser);
+    console.log("update" + updatedUser);
   };
 
   return (
@@ -62,7 +72,8 @@ const UserData = ({ editPage }) => {
                   <input
                     type="text"
                     value={userDetail.fullName}
-                    onChange={(e) => handlerEdit(e, userDetail)}
+                    name="fullName"
+                    onChange={(e) => handlerEdit(e, selectedIndex)}
                   ></input>
                 ) : (
                   userDetail.fullName
@@ -70,21 +81,36 @@ const UserData = ({ editPage }) => {
               </td>
               <td>
                 {showPopUp && selectedIndex == index ? (
-                  <input type="text" value={userDetail.dateOfBirth}></input>
+                  <input
+                    type="text"
+                    value={userDetail.dateOfBirth}
+                    name="dateOfBirth"
+                    onChange={(e) => handlerEdit(e, userDetail)}
+                  ></input>
                 ) : (
                   userDetail.dateOfBirth
                 )}
               </td>
               <td>
                 {showPopUp && selectedIndex == index ? (
-                  <input type="text" value={userDetail.phoneNumber}></input>
+                  <input
+                    type="text"
+                    value={userDetail.phoneNumber}
+                    name="phoneNumber"
+                    onChange={(e) => handlerEdit(e, userDetail)}
+                  ></input>
                 ) : (
                   userDetail.phoneNumber
                 )}
               </td>
               <td>
                 {showPopUp && selectedIndex == index ? (
-                  <input type="text" value={userDetail.email}></input>
+                  <input
+                    type="text"
+                    value={userDetail.email}
+                    name="email"
+                    onChange={(e) => handlerEdit(e, userDetail)}
+                  ></input>
                 ) : (
                   userDetail.email
                 )}
