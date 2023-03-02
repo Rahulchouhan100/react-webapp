@@ -24,6 +24,7 @@
     border-radius: .5rem;
     font-size: 2rem;
     cursor: pointer;
+    /* margin: 1rem; */
 }
 .form-box > input {
     margin-bottom: 1.5rem;

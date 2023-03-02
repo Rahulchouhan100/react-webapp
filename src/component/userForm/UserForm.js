@@ -3,15 +3,6 @@ import { json } from "react-router-dom";
 import "./userForm.css";
 import { getItems, setItems } from "../../utils/helper";
 
-// const getItems = () => {
-//   const userData = JSON.parse(localStorage.getItem("userData"));
-//   return userData;
-// };
-
-// const setItems = (items) => {
-//   localStorage.setItem("userData", JSON.stringify(items));
-// };
-
 const UserForm = () => {
   const [addformUserData, setAddFormUserData] = useState({
     fullName: "",
@@ -29,7 +20,6 @@ const UserForm = () => {
     console.log("age::", age > 18);
     return age > 18;
   };
-
   const validateDuplicateEntry = () => {
     let flag = true;
     const data = getItems();
@@ -149,41 +139,3 @@ const UserForm = () => {
 };
 
 export default UserForm;
-
-// import { useState } from 'react';
-
-// function DateOfBirthInput() {
-//   const [dob, setDob] = useState('');
-
-//   const handleDateChange = (event) => {
-//     const inputDate = new Date(event.target.value);
-//     const today = new Date();
-//     const age = today.getFullYear() - inputDate.getFullYear();
-//     const monthDiff = today.getMonth() - inputDate.getMonth();
-//     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < inputDate.getDate())) {
-//       age--;
-//     }
-//     if (age >= 18) {
-//       setDob(event.target.value);
-//     } else {
-//       setDob('');
-//       alert('You must be at least 18 years old to use this service.');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <label htmlFor="dob">Date of Birth:</label>
-//       <input
-//         type="date"
-//         id="dob"
-//         name="dob"
-//         value={dob}
-//         max={new Date().toISOString().slice(0, 10)}
-//         onChange={handleDateChange}
-//       />
-//     </div>
-//   );
-// }
-
-// export default DateOfBirthInput;

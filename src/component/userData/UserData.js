@@ -159,6 +159,7 @@ const UserData = ({ editPage }) => {
                   onClick={() => {
                     updateUserData();
                   }}
+                  className="update-btn"
                 >
                   UPDATE
                 </button>

@@ -9,7 +9,7 @@
   justify-content: center;
   gap: 1rem;
 }
-table {
+ table {
     border-collapse: collapse;
     width: 80%;
   }
@@ -28,6 +28,34 @@ table {
   
   td {
     background-color: rgb(196, 244, 174);
+  }
+
+  @media(min-width:320px) and (max-width:425px){
+    .user-container{
+      margin-top: 5rem !important;
+      margin-left: 2.5rem;
+     }
+    
+  th,td {
+   
+    font-size: 1rem !important;
+    padding: .1rem !important;
+  }
+
+  }
+  
+  @media(min-width:426px) and (max-width:768px){
+    .user-container{
+      margin-top: 5rem !important;
+      margin-left: 2.5rem;
+     }
+    
+  th,td {
+   
+    font-size: 1.5rem !important;
+    padding: .1rem !important;
+  }
+
   }
 
 
