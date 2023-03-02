@@ -1,0 +1,37 @@
+.table-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  button{
+    background-color: transparent;
+    border: none;
+  }
+  table {
+      border-collapse: collapse;
+      width: 80%;
+    }
+    
+    th,
+    td {
+      border: 1px solid #ffffff;
+      text-align: left;
+      padding: .8rem;
+      font-size: 2rem;
+    }
+    
+    th {
+      background-color: rgba(179, 198, 71, 0.854);
+    }
+    
+    td {
+      background-color: rgb(196, 244, 174);
+    }
+
+    .delete-icon,.edit-icon{
+      width: 2.5rem;
+      cursor: pointer;
+    }
+    .form-container{
+      margin-top: 2rem;
+    }

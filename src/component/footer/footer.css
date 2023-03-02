@@ -1,0 +1,15 @@
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer > p {
+    background-color: rgba(5, 4, 86, 0.703);
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem 0;
+    color: white;
+    
+    
+}
