@@ -9,7 +9,7 @@ const UserData = ({ editPage }) => {
   const [userData, setUserData] = useState(null);
   const [showPopUp, setShowPopUp] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState();
-  const [editedUser, setEditedUser] = useState([]);
+  const [singleUser, setSingleUser] = useState({});
 
   useEffect(() => {
     setUserData(getItems());
@@ -38,17 +38,17 @@ const UserData = ({ editPage }) => {
   //   // arr.push(addformUserData);
   //   // setItems(arr);
   // };
-  const handlerEdit = (e, selectedIndex) => {
-    // const updatedUser = { ...data };
-    const fieldName = e.target.getAttribute("name");
-    // updatedUser[fieldName] = e.target.value;
-    const updatedUser = userData.map((user, index) => {
-      if (index == selectedIndex) {
-        user[fieldName] = e.target.value;
-      }
-    });
-    // setEditedUser(updatedUser);
-    console.log("update" + updatedUser);
+  // const handlerEdit = (e, data) => {
+  //   console.log("data" + e.target.value);
+  // };
+
+  const updateUserData = () => {
+    console.log("userData::", userData[selectedIndex]);
+    userData[selectedIndex] = singleUser;
+    console.log("finalUserData::", userData);
+    setUserData(userData);
+    setItems(userData);
+    setShowPopUp(false);
   };
 
   return (
@@ -66,61 +66,17 @@ const UserData = ({ editPage }) => {
         <tbody>
           {userData.map((userDetail, index) => (
             <tr key={index}>
-              <td>
-                {" "}
-                {showPopUp && selectedIndex == index ? (
-                  <input
-                    type="text"
-                    value={userDetail.fullName}
-                    name="fullName"
-                    onChange={(e) => handlerEdit(e, selectedIndex)}
-                  ></input>
-                ) : (
-                  userDetail.fullName
-                )}
-              </td>
-              <td>
-                {showPopUp && selectedIndex == index ? (
-                  <input
-                    type="text"
-                    value={userDetail.dateOfBirth}
-                    name="dateOfBirth"
-                    onChange={(e) => handlerEdit(e, userDetail)}
-                  ></input>
-                ) : (
-                  userDetail.dateOfBirth
-                )}
-              </td>
-              <td>
-                {showPopUp && selectedIndex == index ? (
-                  <input
-                    type="text"
-                    value={userDetail.phoneNumber}
-                    name="phoneNumber"
-                    onChange={(e) => handlerEdit(e, userDetail)}
-                  ></input>
-                ) : (
-                  userDetail.phoneNumber
-                )}
-              </td>
-              <td>
-                {showPopUp && selectedIndex == index ? (
-                  <input
-                    type="text"
-                    value={userDetail.email}
-                    name="email"
-                    onChange={(e) => handlerEdit(e, userDetail)}
-                  ></input>
-                ) : (
-                  userDetail.email
-                )}
-              </td>
+              <td>{userDetail.fullName}</td>
+              <td>{userDetail.dateOfBirth}</td>
+              <td>{userDetail.phoneNumber}</td>
+              <td>{userDetail.email}</td>
               {editPage && (
                 <td>
                   <button
                     onClick={() => {
                       setShowPopUp(!showPopUp);
                       setSelectedIndex(index);
+                      setSingleUser(userData[index]);
                     }}
                   >
                     <img src={editIcon} alt="edit-icon" className="edit-icon" />
@@ -153,7 +109,7 @@ const UserData = ({ editPage }) => {
           ))}
         </tbody>
       </table>
-      {/* <div>
+      <div>
         {showPopUp && (
           <div className="form-container">
             <div className="form-box">
@@ -162,60 +118,62 @@ const UserData = ({ editPage }) => {
                 type="text"
                 maxLength="50"
                 required="required"
-                value={userData[index].fullName}
-                // onChange={(e) => {
-                //   setUserData( prev => { ...prev , fullName: e.target.value});
-                // }}
-                onChange={(e) => updateUser(e, userData[index])}
+                value={singleUser.fullName}
+                onChange={(e) =>
+                  setSingleUser({ ...singleUser, fullName: e.target.value })
+                }
               />
               <br />
               <label htmlFor="">Date Of Birth :</label> <br />
               <input
                 type="date"
                 required="required"
-                value={userData[index].dateOfBirth}
-                // onChange={(e) => {
-                //   setAddFormUserData({
-                //     ...addformUserData,
-                //     dateOfBirth: e.target.value,
-                //   });
-                // }}
+                value={singleUser.dateOfBirth}
+                onChange={(e) =>
+                  setSingleUser({ ...singleUser, dateOfBirth: e.target.value })
+                }
               />
               <br />
               <label htmlFor="">Phone :</label> <br />
               <input
                 type="number"
                 required="required"
-                value={userData[index].phoneNumber}
-                // onChange={(e) => {
-                //   setAddFormUserData({
-                //     ...addformUserData,
-                //     phoneNumber: e.target.value,
-                //   });
-                // }}
+                value={singleUser.phoneNumber}
+                onChange={(e) =>
+                  setSingleUser({ ...singleUser, phoneNumber: e.target.value })
+                }
               />
               <br />
               <label htmlFor="">Email :</label> <br />
               <input
                 type="email"
                 required="required"
-                value={userData[index].email}
-                // onChange={(e) => {
-                //   setAddFormUserData({
-                //     ...addformUserData,
-                //     email: e.target.value,
-                //   });
-                // }}
+                value={singleUser.email}
+                onChange={(e) =>
+                  setSingleUser({ ...singleUser, email: e.target.value })
+                }
               />
               <br />
               <div className="btn">
-                <button onClick={(e) => saveUserData(e)}>Save</button>
+                <button
+                  onClick={() => {
+                    updateUserData();
+                  }}
+                >
+                  UPDATE
+                </button>
+                <button
+                  onClick={() => {
+                    setShowPopUp(false);
+                  }}
+                >
+                  CANCEL
+                </button>
               </div>
             </div>
           </div>
         )}
-        ;
-      </div> */}
+      </div>
     </div>
   );
 };

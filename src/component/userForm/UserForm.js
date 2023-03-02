@@ -20,8 +20,46 @@ const UserForm = () => {
     email: "",
   });
 
+  const calculateAge = () => {
+    const monthDiff =
+      Date.now() - new Date(addformUserData.dateOfBirth).getTime();
+    const age_dt = new Date(monthDiff);
+    const year = age_dt.getUTCFullYear();
+    const age = Math.abs(year - 1970);
+    console.log("age::", age > 18);
+    return age > 18;
+  };
+
+  const validateDuplicateEntry = () => {
+    let flag = true;
+    const data = getItems();
+    if (!data) return true;
+    data.map((value) => {
+      if (
+        value.email === addformUserData.email ||
+        value.phoneNumber === addformUserData.phoneNumber
+      ) {
+        flag = false;
+      }
+    });
+    !flag &&
+      alert("Duplicte entry for either email or phoneNumber please verify!");
+    return flag;
+  };
+
   const saveUserData = () => {
     console.log(getItems());
+    if (
+      !addformUserData.fullName.length ||
+      addformUserData.fullName.length > 50 ||
+      !addformUserData.dateOfBirth ||
+      !calculateAge() ||
+      !validateDuplicateEntry() ||
+      !addformUserData.email ||
+      !addformUserData.phoneNumber.length ||
+      addformUserData.phoneNumber.length > 10
+    )
+      return;
     if (!getItems()) {
       const items = [];
       items.push(addformUserData);
@@ -41,6 +79,14 @@ const UserForm = () => {
       email: "",
     });
   };
+
+  const handlePhoneNumber = (e) => {
+    setAddFormUserData({
+      ...addformUserData,
+      phoneNumber: e.target.value,
+    });
+  };
+
   return (
     <div className="form-container">
       <div className="form-box">
@@ -73,15 +119,12 @@ const UserForm = () => {
         <br />
         <label htmlFor="">Phone :</label> <br />
         <input
-          type="number"
+          type="tel"
           required="required"
+          maxLength="10"
+          pattern="[0-9]*"
           value={addformUserData.phoneNumber}
-          onChange={(e) => {
-            setAddFormUserData({
-              ...addformUserData,
-              phoneNumber: e.target.value,
-            });
-          }}
+          onChange={(e) => handlePhoneNumber(e)}
         />
         <br />
         <label htmlFor="">Email :</label> <br />
