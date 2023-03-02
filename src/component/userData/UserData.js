@@ -25,23 +25,6 @@ const UserData = ({ editPage }) => {
     setItems(filterData);
   };
 
-  // const updateUser = (e, data) => {
-  //   let updatedUser = { ...data };
-  //   updatedUser = { ...updatedUser, fullName: e.target.value };
-  //   console.log("update user" + updatedUser);
-
-  //   console.log(e.target.value);
-
-  //   console.log(data);
-
-  //   // const arr = getItems();
-  //   // arr.push(addformUserData);
-  //   // setItems(arr);
-  // };
-  // const handlerEdit = (e, data) => {
-  //   console.log("data" + e.target.value);
-  // };
-
   const updateUserData = () => {
     console.log("userData::", userData[selectedIndex]);
     userData[selectedIndex] = singleUser;
@@ -81,13 +64,6 @@ const UserData = ({ editPage }) => {
                   >
                     <img src={editIcon} alt="edit-icon" className="edit-icon" />
                   </button>
-                  {/* {showPopUp && (
-                    <>
-                      <button onClick={() => handlePopUpClose()}>
-                        showpopup
-                      </button>
-                    </>
-                  )} */}
                 </td>
               )}
               {editPage && (

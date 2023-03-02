@@ -25,7 +25,6 @@ const Body = () => {
           </ul>
         </section>
       </nav>
-      {/* <ViewDetails /> */}
     </div>
   );
 };
