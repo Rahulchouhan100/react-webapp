@@ -17,6 +17,19 @@ const UserData = ({ editPage }) => {
 
   if (!userData) return;
 
+  const validateDuplicateEntry = () => {
+    let flag = true;
+    const data = getItems();
+    if (!data) return true;
+    data.map((value) => {
+      if (value.phoneNumber === singleUser.phoneNumber) {
+        flag = false;
+      }
+    });
+    !flag && alert("Duplicte entry  phoneNumber please verify!");
+    return flag;
+  };
+
   const removeUser = (data) => {
     const filterData = getItems().filter((value) => {
       return value.fullName != data.fullName;
@@ -26,7 +39,12 @@ const UserData = ({ editPage }) => {
   };
 
   const updateUserData = () => {
-    // console.log("userData::", userData[selectedIndex]);
+    if (
+      !singleUser.phoneNumber.length ||
+      singleUser.phoneNumber.length > 10 ||
+      !validateDuplicateEntry()
+    )
+      return;
     userData[selectedIndex] = singleUser;
     // console.log("finalUserData::", userData);
     setUserData(userData);
@@ -114,6 +132,8 @@ const UserData = ({ editPage }) => {
               <input
                 type="number"
                 required="required"
+                maxLength="10"
+                pattern="[0-9]*"
                 value={singleUser.phoneNumber}
                 onChange={(e) =>
                   setSingleUser({ ...singleUser, phoneNumber: e.target.value })

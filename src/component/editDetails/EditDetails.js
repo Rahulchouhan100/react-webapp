@@ -6,7 +6,6 @@ const EditDetails = () => {
   return (
     <>
       <UserData editPage={true} />
-      {/* to show both button */}
     </>
   );
 };
