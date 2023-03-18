@@ -17,7 +17,7 @@ const UserForm = () => {
     const age_dt = new Date(monthDiff);
     const year = age_dt.getUTCFullYear();
     const age = Math.abs(year - 1970);
-    console.log("age::", age > 18);
+    // console.log("age::", age > 18);
     return age > 18;
   };
   const validateDuplicateEntry = () => {
@@ -38,7 +38,7 @@ const UserForm = () => {
   };
 
   const saveUserData = () => {
-    console.log(getItems());
+    // console.log(getItems());
     if (
       !addformUserData.fullName.length ||
       addformUserData.fullName.length > 50 ||
@@ -53,15 +53,15 @@ const UserForm = () => {
     if (!getItems()) {
       const items = [];
       items.push(addformUserData);
-      setItems(items);
+      setItems(items); // saved to local storage
     } else {
       // console.log(...getItems());
       const arr = getItems();
       arr.push(addformUserData);
-      setItems(arr);
+      setItems(arr); // object to string
     }
-    console.log(getItems());
 
+    // to form empty
     setAddFormUserData({
       fullName: "",
       dateOfBirth: "",
@@ -92,7 +92,7 @@ const UserForm = () => {
               fullName: e.target.value,
             });
           }}
-        />{" "}
+        />
         <br />
         <label htmlFor="">Date Of Birth :</label> <br />
         <input
@@ -105,7 +105,7 @@ const UserForm = () => {
               dateOfBirth: e.target.value,
             });
           }}
-        />{" "}
+        />
         <br />
         <label htmlFor="">Phone :</label> <br />
         <input

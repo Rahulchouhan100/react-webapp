@@ -26,9 +26,9 @@ const UserData = ({ editPage }) => {
   };
 
   const updateUserData = () => {
-    console.log("userData::", userData[selectedIndex]);
+    // console.log("userData::", userData[selectedIndex]);
     userData[selectedIndex] = singleUser;
-    console.log("finalUserData::", userData);
+    // console.log("finalUserData::", userData);
     setUserData(userData);
     setItems(userData);
     setShowPopUp(false);
